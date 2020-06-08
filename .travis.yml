@@ -9,8 +9,8 @@ script:
 - npm run release -- --publish=never
 
 deploy:
+  edge: true
   provider: gcs
   local-dir: dist
   on:
     branch: master
-  skip_cleanup: 'true'
