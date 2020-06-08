@@ -4,11 +4,20 @@
   "description": "Piggy Bank is a minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "release": "electron-builder"
   },
   "repository": "https://github.com/fortestonly/money",
-  "author": "mahnunchik",
+  "author": {
+    "name": "Piggy Bank Corporation",
+    "email": "support@example.com",
+    "url": "https://www.example.com/"
+  },
   "license": "MIT",
+  "build": {
+    "appId": "com.piggy.bank",
+    "productName": "Piggy Bank"
+  },
   "devDependencies": {
     "electron": "^8.3.0",
     "electron-builder": "^22.7.0"
