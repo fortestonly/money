@@ -4,15 +4,6 @@ matrix:
       osx_image: xcode11.5
       language: node_js
       node_js: "12"
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
-cache:
-  directories:
-    - node_modules
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
 
 script:
   - npm run release
