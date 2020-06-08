@@ -1,9 +1,16 @@
 matrix:
   include:
-    - os: osx
-      osx_image: xcode11.5
-      language: node_js
-      node_js: "12"
+  - os: osx
+    osx_image: xcode11.5
+    language: node_js
+    node_js: '12'
 
 script:
-  - npm run release -- --publish=never
+- npm run release -- --publish=never
+
+deploy:
+  provider: gcs
+  local-dir: dist
+  on:
+    branch: master
+  skip_cleanup: 'true'
