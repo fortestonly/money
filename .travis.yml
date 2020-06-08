@@ -6,11 +6,11 @@ matrix:
     node_js: '12'
 
 script:
-- npm run release -- --publish=never
+- npm run release
 
-deploy:
-  edge: true
-  provider: gcs
-  local-dir: dist
-  on:
-    branch: master
+#deploy:
+#  edge: true
+#  provider: gcs
+#  local-dir: dist
+#  on:
+#    branch: master
