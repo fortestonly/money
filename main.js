@@ -4,6 +4,10 @@
 const { app, shell, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
+if(require('electron-squirrel-startup')) return;
+
+require('update-electron-app')();
+
 app.allowRendererProcessReuse = true;
 
 const isMac = process.platform === 'darwin';
