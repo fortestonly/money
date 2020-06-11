@@ -24,7 +24,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.51",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
     "@electron-forge/maker-zip": "^6.0.0-beta.51",
-    "@electron-forge/publisher-github": "^6.0.0-beta.51",
+    "@mahnunchik/publisher-github": "^6.0.0-beta.51",
     "@electron-forge/publisher-s3": "^6.0.0-beta.51",
     "electron": "^8.3.0"
   },

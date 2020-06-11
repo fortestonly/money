@@ -60,13 +60,14 @@ module.exports = {
   ],
   publishers: [
     {
-      name: '@electron-forge/publisher-github',
+      name: '@mahnunchik/publisher-github',
       config: {
         repository: {
           owner: 'fortestonly',
           name: 'money'
         },
         draft: true,
+        override: true,
       },
     },
     /*{
