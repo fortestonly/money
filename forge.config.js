@@ -15,6 +15,11 @@ module.exports = {
     appCategoryType: 'public.app-category.finance',
     osxSign: {
       'gatekeeper-assess': false,
+      ...(DISTRIBUTION === 'mac'? {
+        'hardened-runtime': true,
+        entitlements: 'resources/entitlements.mac.plist',
+        'entitlements-inherit': 'resources/entitlements.mac.plist',
+      }: {}),
     },
     osxNotarize: (DISTRIBUTION === 'mac' && process.env.APPLE_ID && process.env.APPLE_PASSWORD) ? {
       appBundleId: 'com.piggy.bank',
