@@ -8,6 +8,18 @@ matrix:
 env:
 - DISTRIBUTION=mac
 
+before_script:
+- |
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    echo $CERTIFICATE_MAC | base64 --decode > certificate.p12;
+    security create-keychain -p travis build.keychain;
+    security default-keychain -s build.keychain;
+    security unlock-keychain -p travis build.keychain;
+    security import certificate.p12 -k build.keychain -P $CERTIFICATE_MAC_PASSWORD -T /usr/bin/codesign;
+    security set-key-partition-list -S apple-tool:,apple: -s -k travis build.keychain;
+    rm certificate.p12;
+  fi
+
 script:
 - npm run publish
 
