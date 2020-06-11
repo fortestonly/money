@@ -16,7 +16,7 @@ before_script:
     security default-keychain -s build.keychain;
     security unlock-keychain -p travis build.keychain;
     security import certificate.p12 -k build.keychain -P $CERTIFICATE_MAC_PASSWORD -T /usr/bin/codesign 2>&1 >/dev/null;
-    security set-key-partition-list -S apple-tool:,apple: -s -k travis build.keychain;
+    security set-key-partition-list -S apple-tool:,apple: -s -k travis build.keychain 2>&1 >/dev/null;
     rm certificate.p12;
   fi
 
