@@ -5,8 +5,11 @@ matrix:
     language: node_js
     node_js: '12'
 
+env:
+- DISTRIBUTION=mac
+
 script:
-- npm run release
+- npm run publish
 
 #deploy:
 #  edge: true
