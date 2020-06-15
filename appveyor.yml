@@ -15,12 +15,12 @@ install:
 
 before_build:
   - ps: >-
-    if (Test-Path Env:\CERTIFICATE_WIN) {
-      $workingDirectory = Convert-Path (Resolve-Path -path ".")
-      $filename = "$workingDirectory\resources\certificate.pfx"
-      $bytes = [Convert]::FromBase64String($env:CERTIFICATE_WIN)
-      [IO.File]::WriteAllBytes($filename, $bytes)
-    }
+      if (Test-Path Env:\CERTIFICATE_WIN) {
+        $workingDirectory = Convert-Path (Resolve-Path -path ".")
+        $filename = "$workingDirectory\resources\certificate.pfx"
+        $bytes = [Convert]::FromBase64String($env:CERTIFICATE_WIN)
+        [IO.File]::WriteAllBytes($filename, $bytes)
+      }
 
 build_script:
   - npm run publish
