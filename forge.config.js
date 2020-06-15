@@ -41,17 +41,13 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: (arch) => {
-        return {
-          // App ID
-          name: 'com.piggy.bank',
-          setupExe: arch === 'x64'
-           ? `${pkg.productName} ${pkg.version} Setup.exe`
-           : `${pkg.productName} ${pkg.version} ${arch} Setup.exe`,
-          setupIcon: 'resources/icon.ico',
-          certificateFile: 'resources/certificate.pfx',
-          certificatePassword:  process.env.CERTIFICATE_WIN_PASSWORD,
-        };
+      config: {
+        // App ID
+        name: 'com.piggy.bank',
+        setupExe: `${pkg.productName} Setup.exe`,
+        setupIcon: 'resources/icon.ico',
+        certificateFile: 'resources/certificate.pfx',
+        certificatePassword:  process.env.CERTIFICATE_WIN_PASSWORD,
       },
     },
     {
