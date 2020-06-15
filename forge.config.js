@@ -30,7 +30,7 @@ module.exports = {
         'hardened-runtime': true,
         entitlements: 'resources/entitlements.mac.plist',
         'entitlements-inherit': 'resources/entitlements.mac.plist',
-      }: {}),
+      } : {}),
     },
     osxNotarize: (DISTRIBUTION === 'mac' && process.env.APPLE_ID && process.env.APPLE_PASSWORD) ? {
       appBundleId: 'com.piggy.bank',
@@ -48,6 +48,7 @@ module.exports = {
         setupIcon: 'resources/icon.ico',
         certificateFile: 'resources/certificate.pfx',
         certificatePassword:  process.env.CERTIFICATE_WIN_PASSWORD,
+        remoteReleases: 'https://github.com/fortestonly/money',
       },
     },
     {
