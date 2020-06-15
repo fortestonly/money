@@ -6,6 +6,9 @@ platform:
 init:
   - git config --global core.autocrlf input
 
+environment:
+  DISTRIBUTION: win
+
 install:
   - ps: Install-Product node 12 x64
   - npm ci
