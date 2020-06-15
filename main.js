@@ -42,6 +42,9 @@ const menuTemplate = [
 const menu = Menu.buildFromTemplate(menuTemplate);
 Menu.setApplicationMenu(menu);
 
+app.setAboutPanelOptions({
+  iconPath: path.join(__dirname, 'resources/icon.png'),
+});
 
 function createWindow () {
   // Create the browser window.

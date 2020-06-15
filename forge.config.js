@@ -1,9 +1,10 @@
+'use strict';
 
 const pkg = require('./package.json');
 
 const DISTRIBUTION = process.env.DISTRIBUTION;
 
-if (!['mac', 'mas'].includes(DISTRIBUTION)) {
+if (!['mac', 'mas', 'win'].includes(DISTRIBUTION)) {
   throw new Error(`Please specify valid distribution, provided: '${DISTRIBUTION}'`)
 }
 
@@ -11,6 +12,9 @@ module.exports = {
   packagerConfig: {
     asar: true,
     icon: 'resources/icon',
+    ignore: [
+      '/resources/',
+    ],
     appBundleId: 'com.piggy.bank',
     appCategoryType: 'public.app-category.finance',
     osxSign: {
@@ -28,6 +32,16 @@ module.exports = {
     } : undefined,
   },
   makers: [
+    {
+      name: '@electron-forge/maker-squirrel',
+      config: {
+        // App ID
+        name: 'com.piggy.bank',
+        setupIcon: 'resources/icon.ico',
+        certificateFile: 'resources/certificate.pfx',
+        certificatePassword:  process.env.CERTIFICATE_WIN_PASSWORD,
+      },
+    },
     {
       name: '@electron-forge/maker-zip',
       platforms: [
