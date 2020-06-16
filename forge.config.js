@@ -48,7 +48,7 @@ module.exports = {
         setupIcon: 'resources/icon.ico',
         certificateFile: 'resources/certificate.pfx',
         certificatePassword:  process.env.CERTIFICATE_WIN_PASSWORD,
-        //remoteReleases: 'https://github.com/fortestonly/money',
+        remoteReleases: 'https://github.com/fortestonly/money',
       },
     },
     {
