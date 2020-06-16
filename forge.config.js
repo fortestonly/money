@@ -16,7 +16,7 @@ module.exports = {
       /README.md/i,
       /HISTORY.md/i,
       /CHANGELOG.md/i,
-      '^/(?!main.js|preload.js|renderer.js|index.html|package.json|resources|node_modules)',
+      '^/(?!main.js|preload.js|renderer.js|updater.js|index.html|package.json|resources|node_modules)',
       DISTRIBUTION === 'win' ? '^/resources/(?!icon.png)' : '^/resources',
       '.travis.yml',
       '.editorconfig',

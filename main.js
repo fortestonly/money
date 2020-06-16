@@ -2,11 +2,12 @@
 
 // Modules to control application life and create native browser window
 const { app, shell, BrowserWindow, Menu } = require('electron');
+const log = require('electron-log');
 const path = require('path');
+const updater = require('./updater');
 
 if(require('electron-squirrel-startup')) return;
 
-require('update-electron-app')();
 
 app.allowRendererProcessReuse = true;
 
@@ -67,7 +68,9 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  updater({ log });
+
   createWindow();
 
   app.on('activate', function () {
