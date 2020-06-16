@@ -98,12 +98,12 @@ module.exports = {
         override: true,
       },
     },
-    /*{
-      name: '@electron-forge/publisher-gcs',
+    {
+      name: '@mahnunchik/publisher-gcs',
       config: {
         bucket: 'coinspace-travis-ci',
         public: false,
       },
-    },*/
+    },
   ],
 };
