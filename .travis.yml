@@ -5,6 +5,10 @@ matrix:
     language: node_js
     node_js: '12'
 
+branches:
+  only:
+  - master
+
 env:
 - DISTRIBUTION=mac
 
