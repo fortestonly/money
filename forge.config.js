@@ -4,7 +4,7 @@ const pkg = require('./package.json');
 
 const DISTRIBUTION = process.env.DISTRIBUTION;
 
-if (!['mac', 'mas', 'win'].includes(DISTRIBUTION)) {
+if (!['mac', 'mas', 'win', 'snap'].includes(DISTRIBUTION)) {
   throw new Error(`Please specify valid distribution, provided: '${DISTRIBUTION}'`)
 }
 
@@ -17,7 +17,7 @@ module.exports = {
       /HISTORY.md/i,
       /CHANGELOG.md/i,
       '^/(?!main.js|preload.js|renderer.js|updater.js|index.html|package.json|resources|node_modules)',
-      DISTRIBUTION === 'win' ? '^/resources/(?!icon.png)' : '^/resources',
+      ['win', 'snap'].includes(DISTRIBUTION) ? '^/resources/(?!icon.png)' : '^/resources',
       '.travis.yml',
       '.editorconfig',
       '.gitignore',
@@ -85,9 +85,15 @@ module.exports = {
         },
       },
     },
+    {
+      name: '@electron-forge/maker-snap',
+      config: {
+        summary: pkg.description,
+      },
+    }
   ],
   publishers: [
-    {
+    ...(['mac', 'win'].includes(DISTRIBUTION) ? [{
       name: '@mahnunchik/publisher-github',
       config: {
         repository: {
@@ -97,7 +103,7 @@ module.exports = {
         draft: true,
         override: true,
       },
-    },
+    }] : []),
     {
       name: '@mahnunchik/publisher-gcs',
       config: {
