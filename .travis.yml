@@ -1,10 +1,10 @@
 matrix:
   include:
-  #- os: osx
-  #  osx_image: xcode11.5
-  #  language: node_js
-  #  node_js: '12'
-  #  env: DISTRIBUTION=mac
+  - os: osx
+    osx_image: xcode11.5
+    language: node_js
+    node_js: '12'
+    env: DISTRIBUTION=mac
   - os: linux
     dist: bionic
     language: node_js
