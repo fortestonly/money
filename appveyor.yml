@@ -21,6 +21,7 @@ before_build:
         $bytes = [Convert]::FromBase64String($env:CERTIFICATE_WIN)
         [IO.File]::WriteAllBytes($filename, $bytes)
       }
+  - ps: $Env:GOOGLE_CLOUD_PRIVATE_KEY=$Env:GOOGLE_CLOUD_PRIVATE_KEY.replace("\n","`n")
 
 build_script:
   - npm run publish
