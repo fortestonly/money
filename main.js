@@ -26,6 +26,10 @@ const helpMenu = {
       { type: 'separator' },
       {
         role: 'about',
+        click: async () => {
+          // TODO set icon
+          await app.showAboutPanel();
+        },
       },
     ] : []),
   ],
@@ -44,7 +48,10 @@ const menu = Menu.buildFromTemplate(menuTemplate);
 Menu.setApplicationMenu(menu);
 
 app.setAboutPanelOptions({
-  iconPath: path.join(__dirname, 'resources/icon.png'),
+  applicationName: app.name,
+  applicationVersion: app.getVersion(),
+  website: 'https://github.com/fortestonly/money',
+  iconPath: path.join(__dirname, 'resources/icon_64x64.png'),
 });
 
 function createWindow () {

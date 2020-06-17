@@ -12,12 +12,13 @@ module.exports = {
   packagerConfig: {
     asar: true,
     icon: 'resources/icon',
+    executableName: pkg.name,
     ignore: [
       /README.md/i,
       /HISTORY.md/i,
       /CHANGELOG.md/i,
       '^/(?!main.js|preload.js|renderer.js|updater.js|index.html|package.json|resources|node_modules)',
-      ['win', 'snap'].includes(DISTRIBUTION) ? '^/resources/(?!icon.png)' : '^/resources',
+      ['win', 'snap'].includes(DISTRIBUTION) ? '^/resources/(?!icon_64x64.png)' : '^/resources',
       '.travis.yml',
       '.editorconfig',
       '.gitignore',
@@ -86,9 +87,20 @@ module.exports = {
       },
     },
     {
-      name: '@electron-forge/maker-snap',
+      name: './support/snap',
       config: {
-        summary: pkg.description,
+        linux: {
+          icon: 'resources/icon.icns',
+        },
+        snap: {
+          summary: pkg.description,
+          category: 'Office;Finance',
+          publish: {
+            provider: 'snapStore',
+            channels: ['edge', 'stable'],
+          },
+        },
+        publish: 'always',
       },
     }
   ],
