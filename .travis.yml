@@ -4,10 +4,12 @@ matrix:
   #  osx_image: xcode11.5
   #  language: node_js
   #  node_js: '12'
+  #  env: DISTRIBUTION=mac
   - os: linux
     dist: bionic
     language: node_js
     node_js: '12'
+    env: DISTRIBUTION=snap
     addons:
       snaps:
       - name: snapcraft
@@ -16,9 +18,6 @@ matrix:
 branches:
   only:
   - master
-
-env:
-- DISTRIBUTION=mac
 
 before_script:
 - |
@@ -30,6 +29,9 @@ before_script:
     security import certificate.p12 -k build.keychain -P $CERTIFICATE_MAC_PASSWORD -T /usr/bin/codesign 2>&1 >/dev/null;
     security set-key-partition-list -S apple-tool:,apple: -s -k travis build.keychain 2>&1 >/dev/null;
     rm certificate.p12;
+  fi
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    echo "$SNAP_TOKEN" | snapcraft login --with -;
   fi
 
 script:
