@@ -16,15 +16,11 @@ class MakerSnap extends MakerBase.default {
   }
 
   async make({ dir, makeDir, targetArch }) {
-    console.log(dir, makeDir, targetArch);
-
     const { build } = require('app-builder-lib');
 
     const outPath = path.resolve(makeDir, 'snap', targetArch);
 
     await this.ensureDirectory(outPath);
-
-    console.log(this.config);
 
     return await build({
       prepackaged: dir,
