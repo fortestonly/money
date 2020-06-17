@@ -8,6 +8,10 @@ matrix:
     dist: bionic
     language: node_js
     node_js: '12'
+    addons:
+      snaps:
+      - name: snapcraft
+        confinement: classic
 
 branches:
   only:
