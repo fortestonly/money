@@ -24,6 +24,9 @@ before_build:
   - ps: $Env:GOOGLE_CLOUD_PRIVATE_KEY=$Env:GOOGLE_CLOUD_PRIVATE_KEY.replace("\n","`n")
 
 build_script:
-  - npm run publish
+  - ps: >-
+      npm info
+      npm version
+      npm run publish
 
 test: off
