@@ -14,6 +14,7 @@ install:
   - set NODE_ENV=ci
   - npm config set @coinspace:registry https://npm.pkg.github.com
   - npm config set "//npm.pkg.github.com/:_authToken" '${NPM_READ_TOKEN}'
+  - npm config list
   - npm ci
 
 before_build:
