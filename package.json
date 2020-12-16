@@ -30,6 +30,7 @@
     "electron": "^8.3.0"
   },
   "dependencies": {
+    "@coinspace/bip32-utils": "^0.11.7",
     "electron-log": "^4.2.2",
     "electron-squirrel-startup": "^1.0.0"
   }
