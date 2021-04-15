@@ -1,7 +1,7 @@
 matrix:
   include:
   - os: osx
-    osx_image: xcode11.5
+    osx_image: xcode12.2
     language: node_js
     node_js: '12'
     env: DISTRIBUTION=mac
@@ -26,9 +26,12 @@ before_script:
     security create-keychain -p travis build.keychain;
     security default-keychain -s build.keychain;
     security unlock-keychain -p travis build.keychain;
-    security import certificate.p12 -k build.keychain -P $CERTIFICATE_MAC_PASSWORD -T /usr/bin/codesign 2>&1 >/dev/null;
+    security set-keychain-settings build.keychain;
+    security list-keychains -d user -s build.keychain;
+    security import certificate.p12 -k build.keychain -P $CERTIFICATE_MAC_PASSWORD -T /usr/bin/codesign -T /usr/bin/productbuild 2>&1 >/dev/null;
     security set-key-partition-list -S apple-tool:,apple: -s -k travis build.keychain 2>&1 >/dev/null;
     rm certificate.p12;
+    security find-identity -v
   fi
   if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     echo "$SNAP_TOKEN" | snapcraft login --with -;
