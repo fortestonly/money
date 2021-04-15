@@ -19,6 +19,9 @@ branches:
   only:
   - master
 
+install:
+  - ls -lah
+
 before_script:
 - |
   if [[ "$DISTRIBUTION" == "mac" ]]; then
