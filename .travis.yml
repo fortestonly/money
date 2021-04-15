@@ -5,15 +5,15 @@ matrix:
     language: node_js
     node_js: '12'
     env: DISTRIBUTION=mac
-  - os: linux
-    dist: bionic
-    language: node_js
-    node_js: '12'
-    env: DISTRIBUTION=snap
-    addons:
-      snaps:
-      - name: snapcraft
-        confinement: classic
+#  - os: linux
+#    dist: bionic
+#    language: node_js
+#    node_js: '12'
+#    env: DISTRIBUTION=snap
+#    addons:
+#      snaps:
+#      - name: snapcraft
+#        confinement: classic
 
 branches:
   only:
@@ -22,7 +22,8 @@ branches:
 install:
   - ls -lah
 
-before_script:
+#before_script:
+script:
 - |
   if [[ "$DISTRIBUTION" == "mac" ]]; then
     echo $CERTIFICATE_MAC | base64 --decode > certificate.p12;
@@ -39,5 +40,5 @@ before_script:
     echo "$SNAP_TOKEN" | snapcraft login --with -;
   fi
 
-script:
-- npm run publish
+#script:
+#- npm run publish
