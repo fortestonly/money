@@ -21,3 +21,53 @@ jobs:
       - run: npm ci
         env:
           NODE_ENV: ci
+      - name: Install certificates & login
+        env:
+          DISTRIBUTION: ${{ matrix.DISTRIBUTION }}
+          BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
+          CERTIFICATE_MAC: ${{ secrets.CERTIFICATE_MAC }}
+          CERTIFICATE_MAC_PASSWORD: ${{ secrets.CERTIFICATE_MAC_PASSWORD }}
+          PROVISIONING_DISTRIBUTION: ${{ secrets.PROVISIONING_DISTRIBUTION }}
+          PROVISIONING_DEVELOPMENT: ${{ secrets.PROVISIONING_DEVELOPMENT }}
+        run: |
+          if [[ "$DISTRIBUTION" == "mac" || "$DISTRIBUTION" == "mas" || "$DISTRIBUTION" == "mas-dev" ]]; then
+            echo $CERTIFICATE_MAC | base64 --decode > certificate.p12;
+            security create-keychain -p travis build.keychain;
+            security default-keychain -s build.keychain;
+            security unlock-keychain -p travis build.keychain;
+            security set-keychain-settings build.keychain;
+            security list-keychains -d user -s build.keychain;
+            security import certificate.p12 -k build.keychain -P $CERTIFICATE_MAC_PASSWORD -T /usr/bin/codesign -T /usr/bin/productbuild 2>&1 >/dev/null;
+            security set-key-partition-list -S apple-tool:,apple: -s -k travis build.keychain 2>&1 >/dev/null;
+            rm certificate.p12;
+            if [[ "$DISTRIBUTION" == "mas" ]]; then
+              echo $PROVISIONING_DISTRIBUTION | base64 --decode > electron/embedded.provisionprofile;
+            fi
+            if [[ "$DISTRIBUTION" == "mas-dev" ]]; then
+              echo $PROVISIONING_DEVELOPMENT | base64 --decode > electron/embedded.provisionprofile;
+            fi
+          elif [[ "$DISTRIBUTION" == "snap" ]]; then
+            echo "$SNAP_TOKEN" | snapcraft login --with -;
+          elif [[ "$DISTRIBUTION" == "ios" ]]; then
+            echo $CERTIFICATE_DISTRIBUTION | base64 --decode > certificate.p12;
+            security create-keychain -p travis build.keychain;
+            security default-keychain -s build.keychain;
+            security unlock-keychain -p travis build.keychain;
+            security set-keychain-settings build.keychain;
+            security list-keychains -d user -s build.keychain;
+            security import certificate.p12 -k build.keychain -P $CERTIFICATE_DISTRIBUTION_PASSWORD -T /usr/bin/codesign -T /usr/bin/productbuild 2>&1 >/dev/null;
+            security set-key-partition-list -S apple-tool:,apple: -s -k travis build.keychain 2>&1 >/dev/null;
+            rm certificate.p12;
+            mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles/
+            echo $PROVISIONING_IOS | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/com.coinspace.wallet.mobileprovision;
+            echo $PROVISIONING_IOS_WATCH_APP | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/com.coinspace.wallet.watchapp.mobileprovision;
+            echo $PROVISIONING_IOS_WATCH_APP_EXTENSION | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/com.coinspace.wallet.watchapp.extension.mobileprovision;
+          elif [[ "$DISTRIBUTION" == "android-play" || "$DISTRIBUTION" == "android-galaxy" ]]; then
+            echo $ANDROID_RELEASE_KEYSTORE | base64 --decode > phonegap/release.keystore;
+          fi
+      - name: Build app
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISTRIBUTION: ${{ matrix.DISTRIBUTION }}
+          BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
+        run: npm run publish

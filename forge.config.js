@@ -116,12 +116,12 @@ module.exports = {
         override: true,
       },
     }] : []),
-    {
+    /*{
       name: '@mahnunchik/publisher-gcs',
       config: {
         bucket: 'coinspace-travis-ci',
         public: false,
       },
-    },
+    },*/
   ],
 };
