@@ -32,6 +32,10 @@ jobs:
           PROVISIONING_DISTRIBUTION: ${{ secrets.PROVISIONING_DISTRIBUTION }}
           PROVISIONING_DEVELOPMENT: ${{ secrets.PROVISIONING_DEVELOPMENT }}
         run: |
+          echo "HOME"
+          echo $HOME
+          echo "GITHUB_WORKSPACE"
+          echo $GITHUB_WORKSPACE
           if [[ "$DISTRIBUTION" == "mac" || "$DISTRIBUTION" == "mas" || "$DISTRIBUTION" == "mas-dev" ]]; then
             echo $CERTIFICATE_MAC | base64 --decode > certificate.p12;
             security create-keychain -p travis build.keychain;
