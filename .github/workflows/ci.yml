@@ -36,6 +36,7 @@ jobs:
           PROVISIONING_DISTRIBUTION: ${{ secrets.PROVISIONING_DISTRIBUTION }}
           PROVISIONING_DEVELOPMENT: ${{ secrets.PROVISIONING_DEVELOPMENT }}
           CERTIFICATE_WIN: ${{ secrets.CERTIFICATE_WIN }}
+        shell: bash
         run: |
           echo "DISTRIBUTION"
           echo ${{ matrix.DISTRIBUTION }}
