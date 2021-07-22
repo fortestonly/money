@@ -10,9 +10,8 @@ if (!['mac', 'mas', 'win', 'appx', 'snap'].includes(DISTRIBUTION)) {
 
 module.exports = {
   packagerConfig: {
-    asar: true,
     icon: 'resources/icon',
-    executableName: ['win'].includes(DISTRIBUTION) ? pkg.productName : pkg.name,
+    executableName: ['win', 'appx'].includes(BUILD_PLATFORM) ? pkg.productName : pkg.name,
     ignore: [
       /README.md/i,
       /HISTORY.md/i,
