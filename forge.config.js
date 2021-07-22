@@ -56,7 +56,7 @@ module.exports = {
       name: '@electron-forge/maker-appx',
       config: {
         packageName: 'MoneyApp',
-        publisher: 'Money',
+        publisher: process.env.APPX_PUBLISHER,
         devCert: 'resources/certificate.pfx',
         certPass: process.env.CERTIFICATE_WIN_PASSWORD,
         //assets: 'resources/appx',
