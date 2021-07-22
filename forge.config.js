@@ -55,8 +55,10 @@ module.exports = {
     DISTRIBUTION === 'appx' && {
       name: '@electron-forge/maker-appx',
       config: {
-        packageName: 'MoneyApp',
+        packageName: 'PiggyBank',
+        packageDisplayName: pkg.productName,
         publisher: process.env.APPX_PUBLISHER,
+        publisherDisplayName: pkg.productName,
         devCert: 'resources/certificate.pfx',
         certPass: process.env.CERTIFICATE_WIN_PASSWORD,
         //assets: 'resources/appx',
