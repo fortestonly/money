@@ -40,7 +40,7 @@ module.exports = {
     } : undefined,
   },
   makers: [
-    {
+    DISTRIBUTION === 'win' && {
       name: '@electron-forge/maker-squirrel',
       config: {
         // App ID
