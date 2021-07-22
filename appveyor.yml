@@ -7,8 +7,9 @@ init:
   - git config --global core.autocrlf input
 
 environment:
-  DISTRIBUTION: win
-  DISTRIBUTION: appx
+  matrix:
+    - DISTRIBUTION: win
+    - DISTRIBUTION: appx
 
 install:
   - ps: Install-Product node 14 x64
