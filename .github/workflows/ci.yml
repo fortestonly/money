@@ -91,4 +91,7 @@ jobs:
           CERTIFICATE_WIN_PASSWORD: ${{ secrets.CERTIFICATE_WIN_PASSWORD }}
           DEBUG: electron-windows-store
           APPX_PUBLISHER: ${{ secrets.APPX_PUBLISHER }}
-        run: npm run publish
+        shell: bash
+        run: |
+          node --version
+          npm run publish
