@@ -89,4 +89,5 @@ jobs:
           DISTRIBUTION: ${{ matrix.DISTRIBUTION }}
           BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
           CERTIFICATE_WIN_PASSWORD: ${{ secrets.CERTIFICATE_WIN_PASSWORD }}
+          DEBUG: electron-windows-store
         run: npm run publish

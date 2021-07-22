@@ -26,6 +26,7 @@ before_build:
         [IO.File]::WriteAllBytes($filename, $bytes)
       }
   - ps: $Env:GOOGLE_CLOUD_PRIVATE_KEY=$Env:GOOGLE_CLOUD_PRIVATE_KEY.replace("\n","`n")
+  - ps: $Env:DEBUG="electron-windows-store"
 
 build_script:
   - ps: |
