@@ -15,6 +15,10 @@ jobs:
             node: 14
             DISTRIBUTION: mac
             BUILD_TYPE: electron
+          - os: windows-2019
+            node: 14
+            DISTRIBUTION: win
+            BUILD_TYPE: electron
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -31,6 +35,7 @@ jobs:
           CERTIFICATE_MAC_PASSWORD: ${{ secrets.CERTIFICATE_MAC_PASSWORD }}
           PROVISIONING_DISTRIBUTION: ${{ secrets.PROVISIONING_DISTRIBUTION }}
           PROVISIONING_DEVELOPMENT: ${{ secrets.PROVISIONING_DEVELOPMENT }}
+          CERTIFICATE_WIN: ${{ secrets.CERTIFICATE_WIN }}
         run: |
           echo "DISTRIBUTION"
           echo ${{ matrix.DISTRIBUTION }}
@@ -70,10 +75,13 @@ jobs:
             echo $PROVISIONING_IOS_WATCH_APP_EXTENSION | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/com.coinspace.wallet.watchapp.extension.mobileprovision;
           elif [[ "$DISTRIBUTION" == "android-play" || "$DISTRIBUTION" == "android-galaxy" ]]; then
             echo $ANDROID_RELEASE_KEYSTORE | base64 --decode > phonegap/release.keystore;
+          elif [[ "$DISTRIBUTION" == "win" ]]; then
+            echo $CERTIFICATE_WIN | base64 --decode > resources/certificate.pfx
           fi
       - name: Build app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISTRIBUTION: ${{ matrix.DISTRIBUTION }}
           BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
+          CERTIFICATE_WIN_PASSWORD: ${{ secrets.CERTIFICATE_WIN_PASSWORD }}
         run: npm run publish
