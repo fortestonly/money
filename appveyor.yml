@@ -8,8 +8,8 @@ init:
 
 environment:
   matrix:
-    - DISTRIBUTION: win
     - DISTRIBUTION: appx
+    - DISTRIBUTION: win
 
 install:
   - ps: Install-Product node 14 x64
