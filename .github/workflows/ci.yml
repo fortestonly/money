@@ -19,6 +19,10 @@ jobs:
             node: 14
             DISTRIBUTION: win
             BUILD_TYPE: electron
+          - os: windows-2019
+            node: 14
+            DISTRIBUTION: appx
+            BUILD_TYPE: electron
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -76,7 +80,7 @@ jobs:
             echo $PROVISIONING_IOS_WATCH_APP_EXTENSION | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/com.coinspace.wallet.watchapp.extension.mobileprovision;
           elif [[ "$DISTRIBUTION" == "android-play" || "$DISTRIBUTION" == "android-galaxy" ]]; then
             echo $ANDROID_RELEASE_KEYSTORE | base64 --decode > phonegap/release.keystore;
-          elif [[ "$DISTRIBUTION" == "win" ]]; then
+          elif [[ "$DISTRIBUTION" == "win" || "$DISTRIBUTION" == "appx" ]]; then
             echo $CERTIFICATE_WIN | base64 --decode > resources/certificate.pfx
           fi
       - name: Build app

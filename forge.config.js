@@ -4,7 +4,7 @@ const pkg = require('./package.json');
 
 const DISTRIBUTION = process.env.DISTRIBUTION;
 
-if (!['mac', 'mas', 'win', 'snap'].includes(DISTRIBUTION)) {
+if (!['mac', 'mas', 'win', 'appx', 'snap'].includes(DISTRIBUTION)) {
   throw new Error(`Please specify valid distribution, provided: '${DISTRIBUTION}'`)
 }
 
@@ -50,6 +50,19 @@ module.exports = {
         certificateFile: 'resources/certificate.pfx',
         certificatePassword:  process.env.CERTIFICATE_WIN_PASSWORD,
         //remoteReleases: 'https://github.com/fortestonly/money',
+      },
+    },
+    BUILD_PLATFORM === 'appx' && {
+      name: '@electron-forge/maker-appx',
+      config: {
+        packageName: 'MoneyApp',
+        publisher: 'Money',
+        devCert: 'resources/certificate.pfx',
+        certPass: process.env.CERTIFICATE_WIN_PASSWORD,
+        //assets: 'resources/appx',
+        //manifest: 'resources/appxmanifest.xml',
+        makePri: true,
+        verbose: true,
       },
     },
     {
@@ -103,7 +116,7 @@ module.exports = {
         publish: 'always',
       },
     }
-  ],
+  ].filter(item => !!item),
   publishers: [
     ...(['mac', 'win'].includes(DISTRIBUTION) ? [{
       name: '@mahnunchik/publisher-github',
