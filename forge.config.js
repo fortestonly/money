@@ -52,7 +52,7 @@ module.exports = {
         //remoteReleases: 'https://github.com/fortestonly/money',
       },
     },
-    BUILD_PLATFORM === 'appx' && {
+    DISTRIBUTION === 'appx' && {
       name: '@electron-forge/maker-appx',
       config: {
         packageName: 'MoneyApp',
