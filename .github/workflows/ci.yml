@@ -89,7 +89,7 @@ jobs:
           DISTRIBUTION: ${{ matrix.DISTRIBUTION }}
           BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
           CERTIFICATE_WIN_PASSWORD: ${{ secrets.CERTIFICATE_WIN_PASSWORD }}
-          DEBUG: electron-windows-store
+          DEBUG: electron-windows-store,electron-forge:*
           APPX_PUBLISHER: ${{ secrets.APPX_PUBLISHER }}
         shell: bash
         run: |
