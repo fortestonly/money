@@ -35,7 +35,7 @@ build_script:
       {
         npm info
         npm version
-        npm run publish
+        node build.js
         Write-Host "Success"
       }
 

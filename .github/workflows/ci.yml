@@ -94,4 +94,4 @@ jobs:
         shell: bash
         run: |
           node --version
-          npm run publish
+          node build.js
