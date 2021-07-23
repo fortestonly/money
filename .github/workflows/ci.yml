@@ -11,10 +11,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-10.15
-            node: 14
-            DISTRIBUTION: mac
-            BUILD_TYPE: electron
+          #- os: macos-10.15
+          #  node: 14
+          #  DISTRIBUTION: mac
+          #  BUILD_TYPE: electron
           - os: windows-2019
             node: 14
             DISTRIBUTION: win
@@ -89,7 +89,7 @@ jobs:
           DISTRIBUTION: ${{ matrix.DISTRIBUTION }}
           BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
           CERTIFICATE_WIN_PASSWORD: ${{ secrets.CERTIFICATE_WIN_PASSWORD }}
-          DEBUG: electron-windows-store,electron-forge:*
+          DEBUG: electron-windows-store,electron-forge:*,electron-packager
           APPX_PUBLISHER: ${{ secrets.APPX_PUBLISHER }}
         shell: bash
         run: |
