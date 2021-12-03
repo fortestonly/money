@@ -25,8 +25,25 @@ jobs:
           omitBodyDuringUpdate: true
           omitNameDuringUpdate: true
           body: |
-            Foo bar Release: ${{ env.VERSION }}
-            Url http://foo.bar/v${{ env.VERSION }}/foo
+            * [Web Wallet](https://coin.space/wallet/)
+
+            * [Tor Wallet](http://coinspacezp5mmyuicbz2hoafbnduj4vzkttq3grn5mnwdue5t343zid.onion/)
+
+            * [iOS Application](https://apps.apple.com/us/app/coinspace-bitcoin-wallet/id980719434#?platform=iphone)
+
+            * [Android Application](https://play.google.com/store/apps/details?id=com.coinspace.app)
+
+            * [Galaxy Store](https://galaxy.store/coinapp)
+
+            * [Windows Installer: Coin.Wallet.Setup.exe](https://github.com/CoinSpace/CoinSpace/releases/download/${{ env.VERSION }}/Coin.Wallet.Setup.exe)
+
+            * [macOS Installer: Coin.Wallet.dmg](https://github.com/CoinSpace/CoinSpace/releases/download/${{ env.VERSION }}/Coin.Wallet.dmg)
+
+            * [Microsoft Store](https://www.microsoft.com/store/apps/9NBLGGH5PXJQ)
+
+            * [Mac App Store](https://apps.apple.com/us/app/coin-bitcoin-wallet/id980719434#?platform=mac)
+
+            * [Linux Snap](https://snapcraft.io/coin)
   build:
     #environment: production
     environment: ${{ github.ref == 'refs/heads/master' && 'production' || 'development' }}
