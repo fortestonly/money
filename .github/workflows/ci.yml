@@ -19,7 +19,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ env.VERSION }}
+          name: v${{ env.VERSION }}
           draft: true
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
           body: |
             Foo bar Release: ${{ env.VERSION }}
             Url http://foo.bar/v${{ env.VERSION }}/foo
