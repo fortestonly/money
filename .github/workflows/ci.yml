@@ -19,7 +19,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ env.VERSION }}
-          body: "Foo bar"
+          draft: true
+          body: |
+            Foo bar Release: ${{ env.VERSION }}
+            Url http://foo.bar/v${{ env.VERSION }}/foo
   build:
     #environment: production
     environment: ${{ github.ref == 'refs/heads/master' && 'production' || 'development' }}
