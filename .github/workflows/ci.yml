@@ -14,10 +14,12 @@ jobs:
           node-version: 14
       - name: Set app version
         run: echo "VERSION=$(node -p -e "require('./package.json').version")" >> $GITHUB_ENV
-      - run: echo "${{ env.VERSION }}"
-      #- uses: ncipollo/release-action@v1
-      #  with:
-      #    token: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo "Release: ${{ env.VERSION }}"
+      - uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ env.VERSION }}
+          body: "Foo bar"
   build:
     #environment: production
     environment: ${{ github.ref == 'refs/heads/master' && 'production' || 'development' }}
