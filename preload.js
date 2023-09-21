@@ -1,5 +1,7 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
+const { contextBridge } = require('electron')
+
 window.addEventListener('DOMContentLoaded', () => {
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector)
@@ -10,3 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
     replaceText(`${type}-version`, process.versions[type])
   }
 })
+
+contextBridge.exposeInMainWorld('electron', {
+  appVersion: () => process.env.npm_package_version,
+});

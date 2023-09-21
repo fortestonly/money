@@ -6,9 +6,6 @@ const log = require('electron-log');
 const path = require('path');
 const updater = require('./updater');
 
-if(require('electron-squirrel-startup')) return;
-
-
 app.allowRendererProcessReuse = true;
 
 const isMac = process.platform === 'darwin';
@@ -60,7 +57,7 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      //nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   });

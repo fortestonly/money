@@ -5,11 +5,9 @@
 // selectively enable features needed in the rendering
 // process.
 
-const app = require('electron').remote.app;
-
 const replaceText = (selector, text) => {
   const element = document.getElementById(selector)
   if (element) element.innerText = text
 }
 
-replaceText('app-version', app.getVersion())
+replaceText('app-version', window.electron.appVersion());

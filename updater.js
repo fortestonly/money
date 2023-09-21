@@ -11,7 +11,7 @@ const userAgent = format(
   os.platform(),
   os.arch()
 );
-const supportedPlatforms = ['darwin', 'win32'];
+const supportedPlatforms = ['darwin'];
 
 module.exports = function updater (opts = {}) {
   const log = opts.log;

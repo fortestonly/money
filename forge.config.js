@@ -100,7 +100,7 @@ module.exports = {
         },
       },
     },
-    {
+    /*{
       name: './support/snap',
       config: {
         linux: {
@@ -116,11 +116,17 @@ module.exports = {
         },
         publish: 'always',
       },
-    }
+    }*/
+    {
+      name: '@electron-forge/maker-snap',
+      config: {
+        summary: pkg.description,
+      },
+    },
   ].filter(item => !!item),
   publishers: [
-    ...(['mac', 'win'].includes(DISTRIBUTION) ? [{
-      name: '@mahnunchik/publisher-github',
+    ...(['mac', 'win', 'snap'].includes(DISTRIBUTION) ? [{
+      name: '@electron-forge/publisher-github',
       config: {
         repository: {
           owner: 'fortestonly',
