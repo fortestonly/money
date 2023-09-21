@@ -21,10 +21,12 @@
   "devDependencies": {
     "@electron-forge/cli": "6.4.2",
     "@electron-forge/maker-appx": "6.4.2",
+    "@electron-forge/maker-base": "^6.4.2",
     "@electron-forge/maker-dmg": "6.4.2",
     "@electron-forge/maker-snap": "6.4.2",
     "@electron-forge/maker-zip": "6.4.2",
     "@electron-forge/publisher-github": "^6.4.2",
+    "app-builder-lib": "^24.6.5",
     "electron": "^26.0.0"
   },
   "dependencies": {
