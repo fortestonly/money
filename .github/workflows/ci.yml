@@ -84,7 +84,7 @@ jobs:
         if: ${{ matrix.DISTRIBUTION == 'snap' }}
         uses: samuelmeuli/action-snapcraft@v2
         env:
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAP_TOKEN }}
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
       - name: Install certificates & login
         env:
           DISTRIBUTION: ${{ matrix.DISTRIBUTION }}
@@ -143,7 +143,7 @@ jobs:
           CERTIFICATE_WIN_PASSWORD: ${{ secrets.CERTIFICATE_WIN_PASSWORD }}
           DEBUG: electron-windows-store,electron-forge:*,electron-packager
           APPX_PUBLISHER: ${{ secrets.APPX_PUBLISHER }}
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAP_TOKEN }}
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
         shell: bash
         run: |
           node --version
