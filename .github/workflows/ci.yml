@@ -64,7 +64,7 @@ jobs:
           #  node: 14
           #  DISTRIBUTION: appx
           #  BUILD_TYPE: electron
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             node: 18
             DISTRIBUTION: snap
             BUILD_TYPE: electron
