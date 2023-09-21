@@ -116,8 +116,6 @@ jobs:
             if [[ "$DISTRIBUTION" == "mas-dev" ]]; then
               echo $PROVISIONING_DEVELOPMENT | base64 --decode > electron/embedded.provisionprofile;
             fi
-          elif [[ "$DISTRIBUTION" == "snap" ]]; then
-            #echo "$SNAP_TOKEN" | snapcraft login --with -;
           elif [[ "$DISTRIBUTION" == "ios" ]]; then
             echo $CERTIFICATE_DISTRIBUTION | base64 --decode > certificate.p12;
             security create-keychain -p travis build.keychain;

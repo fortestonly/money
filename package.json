@@ -1,7 +1,7 @@
 {
   "name": "money",
   "productName": "Piggy Bank",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Piggy Bank is a minimal Electron application",
   "main": "main.js",
   "scripts": {
